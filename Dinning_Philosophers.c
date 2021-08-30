@@ -125,7 +125,7 @@ void main(){
     int i;
     init();
     create_philosophers();
-    for(i=0; i<number; i++){
+    for(i=0; i<NUMBER; i++){
         pthread_join(tid[i],NULL);
     }
 }
