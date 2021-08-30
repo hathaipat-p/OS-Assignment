@@ -6,20 +6,20 @@
 
 #define MAX_SLEEP_TIME 5
 
-#define number 5
+#define NUMBER 5
 
-enum{THINKING, HUNGRY, EATING} state[number];
+enum{THINKING, HUNGRY, EATING} state[NUMBER];
 
-int thread_id[number];
+int thread_id[NUMBER];
 
-pthread_cond_t cond_vars[number];
+pthread_cond_t cond_vars[NUMBER];
 pthread_mutex_t mutex_lock;
 
-pthread_t tid[number];
+pthread_t tid[NUMBER];
 
 void init(){
     int i;
-    for(i=0; i<number; i++){
+    for(i=0; i<NUMBER; i++){
         state[i] = THINKING;
         thread_id[i] = i;
         pthread_cond_init(&cond_vars[i],NULL);
@@ -56,7 +56,7 @@ void *philosopher(void *param){
 
 void create_philosophers(){
     int i;
-    for(i=0; i<number; i++){
+    for(i=0; i<NUMBER; i++){
         pthread_create(&tid[i],0,*philosopher,(void *)&thread_id[i]);        
     }
 }
@@ -72,13 +72,13 @@ void thinking(int sleep_time){
 /* dinning */
 int left_neighbor(int num){
     if (num == 0)
-        return number - 1;
+        return NUMBER - 1;
     else
         return num + 1;
 }
 
 int right_neighbor(int num){
-    if (num == number - 1)
+    if (num == NUMBER - 1)
         return 0;
     else
         return num + 1;
