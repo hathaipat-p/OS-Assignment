@@ -3,3 +3,4 @@
 ### including
 #### - Ch 3 : 3.21
 #### - Ch 4 : 4.22
+#### - The Dinning Philosophers
