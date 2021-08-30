@@ -4,14 +4,19 @@
 #include <stdio.h>
 #include <time.h>
 
+/* max time to sleep */
 #define MAX_SLEEP_TIME 5
 
+/* จำนวนนักปราชญ์ */
 #define NUMBER 5
 
+/* สถานะของนักปราชญ์ */
 enum{THINKING, HUNGRY, EATING} state[NUMBER];
 
+/* thread id แต่ละคน */
 int thread_id[NUMBER];
 
+/* condition vars & mutex lock */
 pthread_cond_t cond_vars[NUMBER];
 pthread_mutex_t mutex_lock;
 
@@ -70,6 +75,7 @@ void thinking(int sleep_time){
 }
 
 /* dinning */
+/* return ว่าคนทางขวาคือใคร */
 int left_neighbor(int num){
     if (num == 0)
         return NUMBER - 1;
@@ -77,6 +83,7 @@ int left_neighbor(int num){
         return num + 1;
 }
 
+/* return ว่าคนทางซ้ายคือใคร */
 int right_neighbor(int num){
     if (num == NUMBER - 1)
         return 0;
@@ -84,6 +91,7 @@ int right_neighbor(int num){
         return num + 1;
 }
 
+/* เช็คเงื่อนไขว่า ถ้าฉันหิว และคนข้างซ้าย-ขวาไม่ได้อยู่ในสถานะกิน ฉันกิน */
 void test(int i){
     if ( (state[left_neighbor(i)] != EATING) && (state[i] == HUNGRY) && (state[right_neighbor(i)] != EATING) ){
         state[i] = EATING;
