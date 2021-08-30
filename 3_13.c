@@ -11,7 +11,8 @@ int main() {
 
     if (pid < 0) { 
         /* error occurred */ 
-        fprintf(stderr, "Fork Failed"); return 1;
+        fprintf(stderr, "Fork Failed"); 
+        return 1;
     }
     else if (pid == 0) { 
         /* child process */ 
