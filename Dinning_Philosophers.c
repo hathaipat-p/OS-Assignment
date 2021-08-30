@@ -19,7 +19,7 @@ pthread_t tid[NUMBER];
 
 void init(){
     int i;
-    for(i=0; i<number; i++){
+    for(i=0; i<NUMBER; i++){
         state[i] = THINKING;
         thread_id[i] = i;
         pthread_cond_init(&cond_vars[i],NULL);
